@@ -5,6 +5,7 @@
 body {
 	font-family: 'Open Sans Hebrew', 'Segoe UI Light', 'Helvetica Neue Light', sans-serif;
 	color: #010101;
+	font-size: 13pt;
 }
 
 a {
@@ -45,7 +46,7 @@ a:hover {
 }
 
 .header-title {
-	font-size: 36px;
+	font-size: 31pt;
 	direction: ltr; /* Since this is the Hashtag */
 }
 
@@ -73,16 +74,20 @@ a:hover {
  ***************************************************/
 
 .step-container {
-	background: #EDEBE7;
-	padding: 10px;
+	background: #EDEBE7 url(../images/steps/step-background.png);
 	text-align: center;	
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(174,174,174,1);
 	-moz-box-shadow: 0px 1px 1px 0px rgba(174,174,174,1);
 	box-shadow: 0px 1px 1px 0px rgba(174,174,174,1);
+	padding: 0px;
+}
+
+.step-container .inner-container {
+	padding: 10px;
 }
 
 .step-container .title {
-	font-size: 32px;
+	font-size: 32pt;
 	font-weight: 600;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -90,13 +95,13 @@ a:hover {
 
 .step-container .description,
 .step-container .action-container {
-	margin-top: 15px;
-	margin-bottom: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 .step-container .description .note {
 	color: #4e4e4e;
-	font-size: 12px;
+	font-size: 10pt;
 }
 
 
@@ -105,7 +110,10 @@ a:hover {
 	padding-bottom: 5px;
 	padding-left: 25px;
 	padding-right: 25px;
-	border: 1px solid #010101;
+	border: 2px solid #010101;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	background: #ffffff;
 	font-weight: 600;
 }
@@ -114,21 +122,36 @@ a:hover {
 	text-decoration: none;
 }
 
+.step-container .actions-list {
+	list-style: none;
+	padding-top: 21px;
+}
+
+.step-container .actions-list .action-button {
+	padding-left: 35px;
+	padding-right: 35px;	
+}
+
 /********** First Step **********/
+.step-container.first-step .inner-container {
+	background: url(../images/steps/step-1-background.png) no-repeat top left;
+}
+
 .step-container.first-step .title {
-	color: #1A63C0;
+	color: #1f79cc;
 }
 
 .step-container.first-step a.facebook-user {
 	background: url(../images/buttons/facebook-logout.png) no-repeat;
 	background-size: 100%;
 	min-width: 269px;
-	height: 52px !important;
+	height: 60px !important;
 	color: #f1f1f1;
 	display: inline-block;
-	padding-right: 60px;
+	padding-right: 65px;
 	padding-left: 20px;
-	padding-top: 17px;
+	padding-top: 20px;
+	font-size: 12pt;
 }
 
 .step-container.first-step .facebook-user:hover {
@@ -136,8 +159,16 @@ a:hover {
 }
 
 /********** Second Step **********/
+.step-container .second-step {
+	padding: 0px !important;
+}
+
+.step-container .second-step.inner-container {
+	background: url(../images/steps/step-2-background.png) no-repeat bottom right;
+}
+
 .step-container .second-step .title {
-	color: #154481;
+	color: #185894;
 }
 .step-container .second-step .profie-picture {
 	text-align: center;
@@ -165,7 +196,7 @@ a:hover {
 	color: #ffffff;
 	background-position: 50% 0% !important;
 	padding-top: 35px;
-	padding-left: 35px;
+	padding-left: 20px;
 	text-align: center;
 }
 
@@ -183,8 +214,19 @@ a:hover {
 }
 
 /********** Third Step **********/
+.step-container .third-step {
+	padding: 0px !important;
+}
+
+.step-container .third-step.inner-container {
+	background: url(../images/steps/step-3-background.png) no-repeat top left;
+	min-height: 150px; /* The star of david height is 138, so we'll add some extra space. */
+	margin-top: -5px;
+}
+
 .step-container .third-step .title {
-	color: #0E243F;
+	color: #185894;
+	padding-top: 10px !important; /* the standard 5px + the -5px we substracted in order to place the star of david. */
 }
 
 /**************************************************

@@ -3,34 +3,36 @@
 
 {{-- Steps --}}
 <div class="step-container container-fluid first-step">
-	<div class="row">
-		<div class="col-xs-12 title">התחבר באמצעות Facebook</div>
+	<div class="inner-container">
+    	<div class="row">
+    		<div class="col-xs-12 title">התחבר באמצעות Facebook</div>
+    	</div>
+    	<div class="row description">
+    		כדי להתחיל בהליך, עליך להתחבר באמצעות חשבון הFacebook שלך. <strong>אנו מחייבים כי לא נפרסם דבר בשמך ללא אישורך.</strong><br />
+    		<div class="note"><strong>שים לב:</strong> הרשאות פרסום נדרשות על מנת תמונת הפרופיל לחשבונך מהאתר. אולם, תוכל לבחור שלא לאשר הרשאות אלו לאתר ולהעלות התמונה בעצמך לחשבונך.</div>
+    	</div>
+    	@if (isset($facebookLoginUrl))
+    	{{-- Guest View --}}
+    	<div class="row action-container">
+    		<a href="{{{ $facebookLoginUrl }}}" title="התחבר באמצעות פייסבוק"><img src="{{{ asset('public/images/buttons/facebook-login.png') }}}" alt="" /></a>
+    	</div>
+    	{{-- / Guest View --}}
+    	@else
+    	{{-- User View --}}
+    	<div class="row action-container">
+    		<a href="{{{ $facebookLogoutUrl }}}" class="facebook-user">
+    			מחובר בתור <strong>{{{ $userData['name'] }}}</strong> (לחץ כדי להתנתק)</a>
+    	</div>
+    	{{-- / User View --}}
+    	@endif
 	</div>
-	<div class="row description">
-		כדי להתחיל בהליך, עליך להתחבר באמצעות חשבון הFacebook שלך. <strong>אנו מחייבים כי לא נפרסם דבר בשמך ללא אישורך.</strong><br />
-		<div class="note"><strong>שים לב:</strong> הרשאות פרסום נדרשות על מנת תמונת הפרופיל לחשבונך מהאתר. אולם, תוכל לבחור שלא לאשר הרשאות אלו לאתר ולהעלות התמונה בעצמך לחשבונך.</div>
-	</div>
-	@if (isset($facebookLoginUrl))
-	{{-- Guest View --}}
-	<div class="row action-container">
-		<a href="{{{ $facebookLoginUrl }}}" title="התחבר באמצעות פייסבוק"><img src="{{{ asset('public/images/buttons/facebook-login.png') }}}" alt="" /></a>
-	</div>
-	{{-- / Guest View --}}
-	@else
-	{{-- User View --}}
-	<div class="row action-container">
-		<a href="{{{ $facebookLogoutUrl }}}" class="facebook-user">
-			מחובר בתור <strong>{{{ $userData['name'] }}}</strong> (לחץ כדי להתנתק)</a>
-	</div>
-	{{-- / User View --}}
-	@endif
 </div>
 
 <div class="container-fluid step-container">
 	<div class="row">
 		{{-- Second Step --}}
 		<div class="col-md-6">
-			<div class="second-step">
+			<div class="second-step inner-container">
 				<div class="title">הפעל את הפילטר</div>
 				@if (!isset($userData))
 				{{-- Guest View --}}
@@ -62,11 +64,27 @@
 		
 		{{-- Third Step --}}
 		<div class="col-md-6">
-			<div class="third-step">
+			<div class="third-step inner-container">
 				<div class="title">העלה ושתף</div>
-				<div class="explaination">
-					אנא התחבר באמצעות פייסבוק על להוריד ולשתף את תמונת הפרופיל החדשה שלך.
+			
+				@if (!isset($userData))
+				{{-- Guest View --}}
+				<div class="description action-container">
+					אנא התחבר באמצעות פייסבוק על מנת להוריד<br />ולשתף את תמונת הפרופיל החדשה שלך.
 				</div>
+				{{-- / Guest View --}}
+				@else
+				{{-- User View --}}
+				<ul class="actions-list action-container">
+					{{--<li>
+						<a href="{{{ url('image-filter/setup-fb-profile-picture') }}}" class="action-button">הגדר כתמונת פרופיל</a></li>
+					<li>
+						<a href="{{{ url('image-filter/download') }}}" class="action-button" id="fb-share-button">הורד למחשב</a></li>
+					--}}<li>
+						<a href="javascript: void(0);" class="action-button" id="fb-share-button">שתף בFacebook</a></li>
+				</ul>
+				{{-- / User View --}}
+				@endif
 			</div>
 		</div>
 	</div>

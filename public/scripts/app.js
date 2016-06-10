@@ -21,6 +21,20 @@ var IBIApp =
 			}
 			IBIApp.createFilteredPicture();
 		});
+		
+		$("#fb-share-button").click(function() {
+			FB.ui({
+				  method: 'share',
+				  title: '#AniBeIsrael',
+		          picture: 'http://localhost/anibeisrael/image-filter/render',  
+		          caption: 'your_caption',  
+		          description: 'your_description',
+				  hashtag: '#AniBeIsrael',
+				  href: 'http://anibeisrael.com'
+				}, function(response) {
+					
+				});
+		});
 	},
 	
 	createFilteredPicture: function() {

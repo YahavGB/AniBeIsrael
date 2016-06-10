@@ -14,8 +14,18 @@ use Illuminate\Http\Response;
 
 $app->get('/', 'HomeController@index');
 $app->get('/authorization/resolve', 'AuthorizationController@resolve');
-$app->get('/image-filter/render', 'HomeController@renderFilteredImage');
-$app->get('/image-filter/create', 'HomeController@createFilteredImage');
+$app->get('/image-filter/render', 'ImageFilteringController@renderFilteredImage');
+$app->get('/image-filter/create', 'ImageFilteringController@createFilteredImage');
+$app->get('/image-filter/download', 'ImageFilteringController@downloadFilteredImage');
+
+$app->get('/test', function() use ($app) {
+
+    $flagPath = storage_path('app/image-resources/israel-flag.png');
+    
+    app(\App\Services\Drawing\ImageFilterService::class)->renderFilteredImage(
+        'https://graph.facebook.com/10208472712528961/picture?width=9999',
+        $flagPath);
+});
 
 /*
 $app->get('/', function () use ($app) {

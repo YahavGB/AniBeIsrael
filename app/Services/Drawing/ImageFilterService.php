@@ -49,6 +49,12 @@ class ImageFilterService
         
         $imageResource = $this->applyFilter($imageResource, $filterResource,
             $pictureSize, $filterSize);
+
+        //----------------------------------------------------------
+        //  Add watermark
+        //----------------------------------------------------------
+        
+        $imageResource = $this->writeText($imageResource, $pictureSize, '#AniBeIsrael');
         
         //----------------------------------------------------------
         //  Draw it!
@@ -104,7 +110,13 @@ class ImageFilterService
     
         $imageResource = $this->applyFilter($imageResource, $filterResource,
             $pictureSize, $filterSize);
-    
+        
+        //----------------------------------------------------------
+        //  Add watermark
+        //----------------------------------------------------------
+        
+        $imageResource = $this->writeText($imageResource, $pictureSize, '#AniBeIsrael');
+        
         //----------------------------------------------------------
         //  Draw it!
         //----------------------------------------------------------
@@ -212,5 +224,43 @@ class ImageFilterService
         }
     
         return true;
+    }
+
+    public function writeText($imageResource, $imageSize, $text)
+    {
+        //----------------------------------------------------------
+        //  Settings
+        //----------------------------------------------------------
+        $margin         = 15;
+        $textSize       = 30;
+        
+        //----------------------------------------------------------
+        //  Setup
+        //----------------------------------------------------------
+        $fontPath       = storage_path('app/OpenSans-Light.ttf');
+        $black          = imagecolorallocate($imageResource, 0, 0, 0);
+        
+        //----------------------------------------------------------
+        //  Get the text size
+        //----------------------------------------------------------
+        $bbox           = imagettfbbox($textSize, 0, $fontPath, $text);
+        //$textWidth      = abs($bbox[4] - $bbox[0]);
+        $textHeight     = abs($bbox[5] - $bbox[1]);
+        
+        //----------------------------------------------------------
+        //  Write
+        //----------------------------------------------------------
+        imagettftext($imageResource,
+            $textSize,
+            0,
+            $margin,
+            $imageSize['h'] - $textHeight,
+            $black,
+            $fontPath,
+            $text);
+        
+        //imagettftext($im, 20, 0, 10, 20, $black, $font, $text);
+        
+        return $imageResource;
     }
 }
